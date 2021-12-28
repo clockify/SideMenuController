@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         SideMenuController.preferences.drawing.menuButtonImage = UIImage(named: "menu")
         SideMenuController.preferences.drawing.sidePanelPosition = .underCenterPanelLeft
@@ -47,5 +47,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+}
+
+extension UIApplication {
+    var statusBarUIView: UIView? {
+        if #available(iOS 13.0, *) {
+            let tag = 38482458385
+            if let statusBar = self.keyWindow?.viewWithTag(tag) {
+                return statusBar
+            } else {
+                let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+                statusBarView.tag = tag
+
+                self.keyWindow?.addSubview(statusBarView)
+                return statusBarView
+            }
+        } else {
+            if responds(to: Selector(("statusBar"))) {
+                return value(forKey: "statusBar") as? UIView
+            }
+        }
+        return nil
     }
 }
