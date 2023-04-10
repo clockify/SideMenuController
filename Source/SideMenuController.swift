@@ -427,10 +427,10 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
         if sidePanelPosition.isPositionedUnder && sidePanelVisible {
             
             let sidePanelWidth = _preferences.drawing.sidePanelWidth
-            return CGRect(x: sidePanelPosition.isPositionedLeft ? sidePanelWidth : -sidePanelWidth, y: 0, width: screenSize.width, height: screenSize.height + diff)
+            return CGRect(x: sidePanelPosition.isPositionedLeft ? sidePanelWidth : -sidePanelWidth, y: 0, width: screenSize.width, height: screenSize.height)
             
         } else {
-            return CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height + diff)
+            return CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
         }
     }
     
@@ -442,12 +442,12 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
         
         if sidePanelPosition.isPositionedUnder {
             sidePanelFrame = CGRect(x: sidePanelPosition.isPositionedLeft ? 0 :
-                screenSize.width - panelWidth, y: 0, width: panelWidth, height: screenSize.height + diff)
+                screenSize.width - panelWidth, y: 0, width: panelWidth, height: screenSize.height)
         } else {
             if sidePanelVisible {
-                sidePanelFrame = CGRect(x: sidePanelPosition.isPositionedLeft ? 0 : screenSize.width - panelWidth, y: 0, width: panelWidth, height: screenSize.height + diff)
+                sidePanelFrame = CGRect(x: sidePanelPosition.isPositionedLeft ? 0 : screenSize.width - panelWidth, y: 0, width: panelWidth, height: screenSize.height)
             } else {
-                sidePanelFrame = CGRect(x: sidePanelPosition.isPositionedLeft ? -panelWidth : screenSize.width, y: 0, width: panelWidth, height: screenSize.height + diff)
+                sidePanelFrame = CGRect(x: sidePanelPosition.isPositionedLeft ? -panelWidth : screenSize.width, y: 0, width: panelWidth, height: screenSize.height)
             }
         }
         
